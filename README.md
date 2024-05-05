@@ -1,5 +1,5 @@
 # papers
-Here are some notes on leading papers relating to AI agents, memory systems, and evaluating agents. I made these notes while I was reading and thinking about these papers as a way to better understand them and be able to come back to them. 
+Here are some notes on leading papers relating to AI agents, memory systems, and evaluating agents. I made these notes while I was reading and thinking about these papers as a way to better understand them and be able to come back to them. The repo contains all of these pdfs. 
 1. Generative Agents by Park et al 2023
 	1. goal: generate believable proxies/replications of human behavior using llm pipeline (uses gpt3.5). 
 	2. approach: created a 2D environment of a "town" similar to the sims where agents are assigned roles. Visualized for agents using just text (i.e. no actual image sensory input going into agent, just visual description of objects and such). 
