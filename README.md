@@ -4,19 +4,21 @@ Here are some notes on leading papers relating to AI agents, memory systems, and
 	1. goal: generate believable proxies/replications of human behavior using llm pipeline (uses gpt3.5). 
 	2. approach: created a 2D environment of a "town" similar to the sims where agents are assigned roles. Visualized for agents using just text (i.e. no actual image sensory input going into agent, just visual description of objects and such). 
 	3. created and observed 25 agents in tandem in various "scenarios" such a party throwing scenario, school extracurricular, and valentines day. 
-	4. ![[Pasted image 20240505175840.png]] img1: example object labeling in the enviroment (these labels are fed into the agent)
+	4. <img width="1033" alt="Pasted image 20240505175840" src="https://github.com/prbsth/papers/assets/34644276/6a05479f-fb93-4c4f-81ea-d3bd816fa6b9"> img1: example object labeling in the enviroment (these labels are fed into the agent)
 	5. Agent architecture:
 		1. Backstory: Very short 10 line backstories. Eg: "John Lin is a pharmacy shopkeeper at the Willow Market and Pharmacy who loves to help people. He is always looking for ways to make the process of getting medication easier for his customers; John Lin is living with his wife, Mei Lin, who is a college professor, and son, Eddy Lin, who is a student studying music theory; John Lin loves his family very much; John Lin has known the old couple next-door, Sam Moore and Jennifer Moore, for a few years; John Lin thinks Sam Moore is a kind and nice man; John Lin knows his neighbor, Yuriko Yamamoto, well; John Lin knows of his neighbors, Tamara Taylor and Carmen Ortiz, but has not met them before; John Lin and Tom Moreno are colleagues at The Willows Market and Pharmacy; John Lin and Tom Moreno are friends and like to discuss local politics together; John Lin knows the Moreno family somewhat well — the husband Tom Moreno and the wife Jane Moreno."
 		2. Agents can perform "actions", regular speech, and environmental interaction. programmed to do things such as wakeup and sleep, brush teeth, etc. these morning routines are more hard coded than something that is learnt it seems. for instance, no agent would ever skip a shower if they woke up too late (potential to add randomness to actions such as sleep time and waking up sampling such that sometimes u wake up really late?). 
-		3. Agent memory: associative social memory system. They use a memory stream that has exact words from past convos stored for a certain amount of flops. they then take "keywords" and store them for longer. No biological justification for this, and frankly no good benchmarks either. Closest they come is giving this example: "at the start, Sam does not know Latoya Williams. While taking a walk in Johnson Park, Sam runs into Latoya, and they introduce themselves. Latoya mentions that she is working on a photography project: “I’m here to take some photos for a project I’m working on.” In a later interaction, Sam’s interactions with Latoya indicate a memory of that interaction, as he asks “Hi, Latoya. How is your project going?” and she replies “Hi, Sam. It’s going well!”"![[Pasted image 20240505180250.png]]
+		3. Agent memory: associative social memory system. They use a memory stream that has exact words from past convos stored for a certain amount of flops. they then take "keywords" and store them for longer. No biological justification for this, and frankly no good benchmarks either. Closest they come is giving this example: "at the start, Sam does not know Latoya Williams. While taking a walk in Johnson Park, Sam runs into Latoya, and they introduce themselves. Latoya mentions that she is working on a photography project: “I’m here to take some photos for a project I’m working on.” In a later interaction, Sam’s interactions with Latoya indicate a memory of that interaction, as he asks “Hi, Latoya. How is your project going?” and she replies “Hi, Sam. It’s going well!”"<img width="932" alt="Pasted image 20240505180250" src="https://github.com/prbsth/papers/assets/34644276/0398e839-d6db-485c-8eb9-80b5377117d3">
+
 		4. memory retreival: they assign metrics to each memory in stream: recency, importance, and relevance on scale (0,1) and compare by sum to retrieve. no embeddings or cos similarity. just brute force. (one of the reasons why this project takes 50$ an hour per agent to run, although these costs are decreasing, esp if you use smth like Llama 3). Agents also reflection on recent memory stream to determine some meta goals (they also maintain this goal state throughout which is heavily tied to the agent "backstory" so the agent is basically always zoned in on that). 
-		5. Evals: just made some scenarios and eyeballed. basic questions to test memory of events but no counterfactual testing or rigourous math metrics. Ablation testing results:![[Pasted image 20240505180809.png]]
+		5. Evals: just made some scenarios and eyeballed. basic questions to test memory of events but no counterfactual testing or rigourous math metrics. Ablation testing results:<img width="1033" alt="Pasted image 20240505175840" src="https://github.com/prbsth/papers/assets/34644276/51aa8ff7-0784-401e-9f3e-ab029c096729">
 		6. All the code is on [[https://github.com/joonspk-research/generative_agents]].
 2. LyfeGame by mit metaconscious lab and robert yang (2023). 
-	1. heavily builds on park et al to make 3 improvements: better memory and lesser cost and 3d enviromental input. ![[Pasted image 20240505181114.png]]
+	1. heavily builds on park et al to make 3 improvements: better memory and lesser cost and 3d enviromental input. <img width="800" alt="Pasted image 20240505181114" src="https://github.com/prbsth/papers/assets/34644276/a5087aa0-9331-47ef-a5f2-13ba8b669df6">
+
 	2. architecture: add onto park et al with a new brain system that contains a self monitor unit (which builds upon park et al's reflection but solidifies it). exists in 3d enviroment but alas all input is still in text so the 3d part of the environment mainly serves aesthetics. 
 		1. Key insight: Summarize and forget memory. they cite McClelland et al 1995 to show that the hippocampus implements a summarize and forget mechanism and add memory decay as a hyperparam and at a regular timestep, summarize recent experiences, store the summary and forget the exact experiences. Also connected to the self-monitoring and goal adherence pipeline since this helps identify emerging goals and themes. they have longer, almost 1 page agent backstories which each have around 3 lines of biological details and then around 8-9 1 line long term memory experiences.
-		2. Evals: they implement a murder mystery scenario: ![[Pasted image 20240505182104.png]]
+		2. Evals: they implement a murder mystery scenario: <img width="779" alt="Pasted image 20240505182104" src="https://github.com/prbsth/papers/assets/34644276/1551a863-b4a9-4b25-acf6-57abf90fb2b3">
 		3. Some more notes on memory:
 			it uses openai's text-embedding-ada-002 model to generate embeddings of text strings. use cosine similarity between embeddings is used for similarity search
 			a "forgetting algorithm" is used to maintain diversity in the stored memories by removing redundant items above a similarity threshold
@@ -54,7 +56,7 @@ Here are some notes on leading papers relating to AI agents, memory systems, and
 		- Prompt truncation to 3500 tokens, handle both chat and text-completion models
 	4. Results Analysis: 
 		- GPT-4 achieves 4.01 overall score vs 0.51 avg for open-source models, but still fails on complex tasks
-		- ![[Pasted image 20240505183903.png]]
+		- <img width="709" alt="Pasted image 20240505183903" src="https://github.com/prbsth/papers/assets/34644276/d70c3d5a-8ff5-4612-8735-0076398f6522">
 		- Breakdown of failure reasons: Task Limit Exceeded (67.9% on KG), Invalid Format (53.3% on DB, 38.5% on DCG), Invalid Action (64.1% on HH)
 		- Code training (CodeLlama vs Llama2) helps procedural tasks (WS) but hurts strategy (DCG)
 		- Alignment data quality (Vicuna-13b vs Llama2-13b) improves overall performance  
@@ -130,7 +132,7 @@ Here are some notes on leading papers relating to AI agents, memory systems, and
 		2) out-of-plan refinement: proactively revise entire plan when observations deviate from predictions
 		- uses code-style llm prompts to reduce ambiguity and mitigate hallucination across diverse tasks and environments
 		- skill discovery mechanism leverages successful plans as few-shot exemplars to improve sample efficiency
-		- ![[Pasted image 20240505191329.png]]
+		- <img width="512" alt="Pasted image 20240505191329" src="https://github.com/prbsth/papers/assets/34644276/9c5670f0-94ce-4bab-8619-b027851b9889">
 	1. code-based prompting:
 		- uses pythonic code prompts instead of natural language
 		- reduces llm misinterpretation and hallucination during plan generation and refinement
@@ -211,7 +213,7 @@ Here are some notes on leading papers relating to AI agents, memory systems, and
 		- experiment with >2 player games and multimodal context
 		- use games to analyze model abilities across size variations and training checkpoints
 		- optimize individual models on games
-		- example template: ![[Pasted image 20240505191209.png]]
+		- example template: <img width="425" alt="Pasted image 20240505191209" src="https://github.com/prbsth/papers/assets/34644276/e89823ee-da64-41bc-b813-1ec860d6912c">
 	5. conclusions: 
 		- shows cllms can serve as models of interactive agents in constrained language games
 		- games span breadth of situated language understanding capabilities 
