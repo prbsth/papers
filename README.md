@@ -219,3 +219,13 @@ Here are some notes on leading papers relating to AI agents, memory systems, and
 		- games span breadth of situated language understanding capabilities 
 		- game play evaluation is complementary to classical nlp task or preference-based evaluation
 		- provides avenue into evaluating interactive language use abilities of cllms
+
+Other stuff to read:
+1. RoleInteract: Evals for social intelligence of LLMs: https://arxiv.org/abs/2403.13679 (no code available, only published benchmarks?)
+2. CloChat: validates that ppl like talking to persona LLMs: https://arxiv.org/abs/2402.15265
+3. Unveiling the Truth and Facilitating Change: Towards Agent-based Large-scale Social Movement Simulation: simulate twitter basically. INSANE
+4. SOTOPIA: Interactive evaluation for social intelligence in LLM-based agents. https://openreview.net/forum?id=mM7VurbA4r. Seems very gud.
+5. Cognitive Architectures for Language Agents: https://www.semanticscholar.org/reader/e4bb1b1f97711a7634bf4bff72c56891be2222e6 Extremely complex proposals for agent memory, etc. Post park et al, but dunno how it interacts with Kaiya et al.
+6. An Appraisal-Based Chain-Of-Emotion Architecture for Affective Language Model Game Agents. https://arxiv.org/abs/2309.05076
+7. CharacterChat: https://arxiv.org/abs/2308.10278. Code: https://github.com/morecry/CharacterChat
+8. PersonaLLMs: https://www.semanticscholar.org/paper/PersonaLLM%3A-Investigating-the-Ability-of-Large-to-Jiang-Zhang/f81d85025b349694a57607c5b0c58e0be70bf22f
